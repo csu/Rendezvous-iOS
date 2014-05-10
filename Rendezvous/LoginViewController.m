@@ -29,29 +29,17 @@
     // Do any additional setup after loading the view.
 }
 
-- (IBAction)hello:(id)sender {
-    [self performSegueWithIdentifier: @"FriendsListSegue" sender: self];
-    NSLog(@"i'm at the fetched info");
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"FriendsListSegue"])
-    {
-        NSLog(@"i'm in the prepare for segue");
-    }
-}
-
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user {
-    [self performSegueWithIdentifier: @"FriendsListSegue" sender: self];
-    NSLog(@"i'm at the fetched info");
+    NSLog(@"1");
 }
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-    
+    NSLog(@"2");
+    [self performSegueWithIdentifier: @"FriendsListSegue" sender: self];
 }
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
+    NSLog(@"3");
     
 }
 
@@ -92,13 +80,15 @@
 
 /*
 #pragma mark - Navigation
+*/
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"FriendsListSegue"])
+    {
+        
+    }
 }
-*/
 
 @end

@@ -18,11 +18,14 @@ PODS:
   - AFNetworking/UIKit (2.2.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - FXForms (1.1.6)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - FXForms (~> 1.1)
 
 SPEC CHECKSUMS:
   AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
+  FXForms: d1c3fccab32a6702430b14808f7b46061008a4a9
 
 COCOAPODS: 0.32.1
