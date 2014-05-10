@@ -12,6 +12,7 @@
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePictureView;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *statusLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *background;
 
 @end
 
@@ -22,6 +23,13 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+//        UIGraphicsBeginImageContext(self.view.frame.size);
+//        [[UIImage imageNamed:@"fb-auth-button.png"] drawInRect:self.view.bounds];
+//        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//        UIGraphicsEndImageContext();
+//        self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+        
+//        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"fb-auth-button.png"]];
     }
     return self;
 }
