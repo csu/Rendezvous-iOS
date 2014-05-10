@@ -11,6 +11,8 @@
 
 @interface LoginViewController : UIViewController <FBLoginViewDelegate>
 
+@property (strong, nonatomic) IBOutlet UIButton *clickButton;
 
+- (IBAction)hello:(UIButton *)sender;
 
 @end

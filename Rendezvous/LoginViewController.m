@@ -29,16 +29,22 @@
     // Do any additional setup after loading the view.
 }
 
+- (IBAction)hello:(id)sender {
+    [self performSegueWithIdentifier: @"FriendsListSegue" sender: self];
+    NSLog(@"i'm at the fetched info");
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"FriendsListSegue"])
     {
-        
+        NSLog(@"i'm in the prepare for segue");
     }
 }
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user {
     [self performSegueWithIdentifier: @"FriendsListSegue" sender: self];
+    NSLog(@"i'm at the fetched info");
 }
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
