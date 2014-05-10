@@ -7,8 +7,8 @@
 //
 
 #import "MasterViewController.h"
-
 #import "DetailViewController.h"
+#import "AFNetworking/AFNetworking.h"
 
 @interface MasterViewController () {
     NSMutableArray *_objects;
