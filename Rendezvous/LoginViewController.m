@@ -9,10 +9,6 @@
 #import "LoginViewController.h"
 
 @interface LoginViewController ()
-@property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePictureView;
-@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *statusLabel;
-@property (strong, nonatomic) IBOutlet UIImageView *background;
 
 @end
 
@@ -23,13 +19,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-//        UIGraphicsBeginImageContext(self.view.frame.size);
-//        [[UIImage imageNamed:@"fb-auth-button.png"] drawInRect:self.view.bounds];
-//        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-//        UIGraphicsEndImageContext();
-//        self.view.backgroundColor = [UIColor colorWithPatternImage:image];
-        
-//        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"fb-auth-button.png"]];
     }
     return self;
 }
@@ -40,20 +29,16 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
-                            user:(id<FBGraphUser>)user {
-    self.profilePictureView.profileID = user.id;
-    self.nameLabel.text = user.name;
+- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user {
+    
 }
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-    self.statusLabel.text = @"You're logged in as";
+    
 }
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
-    self.profilePictureView.profileID = nil;
-    self.nameLabel.text = @"";
-    self.statusLabel.text= @"You're not logged in!";
+    
 }
 
 - (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
