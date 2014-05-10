@@ -118,7 +118,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
-                        <segue destination="pGg-6v-bdr" kind="push" identifier="friendsListSegue" id="Drj-zb-h5u"/>
+                        <segue destination="pGg-6v-bdr" kind="push" identifier="FriendsListSegue" id="Drj-zb-h5u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Md2-zP-FOU" userLabel="First Responder" sceneMemberID="firstResponder"/>

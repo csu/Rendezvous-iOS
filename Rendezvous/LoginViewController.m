@@ -29,8 +29,16 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"FriendsListSegue"])
+    {
+        
+    }
+}
+
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user {
-    
+    [self performSegueWithIdentifier: @"FriendsListSegue" sender: self];
 }
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
