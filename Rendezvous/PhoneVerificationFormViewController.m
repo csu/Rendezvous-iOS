@@ -22,7 +22,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        [self setTitle:@"Sign Up"];
+        [self setTitle:@"Verify Phone"];
         self.formController.form = [[PhoneVerificationForm alloc] init];
     }
     return self;
@@ -43,21 +43,24 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"code": form.verificationCode, @"username": username};
-    [manager PUT:[NSString stringWithFormat:@"%s/%@", APIBaseURL, @"/user/new/"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager PUT:[NSString stringWithFormat:@"%s%@", APIBaseURL, @"/user/new/"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // always enters success because the API returns valid JSON and doesn't have appropriate HTTP status codes
-        NSInteger status = [[((NSDictionary *)responseObject) objectForKey:@"status"] intValue];
-        if (status == 200) {
-            // continue to text verification
-            
+        NSDictionary *user = ((NSDictionary *)responseObject);
+        NSLog(@"%@", user);
+        if ([user objectForKey:@"status"]) {
+            if ([[user objectForKey:@"status"] integerValue] == 401) {
+                // later should add something to limit the number of tries
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Incorrect confirmation code." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+            // also later need to handle: 409 – restart registration; others – ???
+            else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something went wrong." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+            }
         }
-        else if (status == 401) {
-            // later should add something to limit the number of tries
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Incorrect confirmation code." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-        }
-        // also later need to handle: 409 – restart registration; others – ???
         else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something went wrong." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"It worked." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

@@ -11,6 +11,7 @@
 #import "SignUpForm.h"
 #import "AFNetworking/AFNetworking.h"
 #import "Globals.h"
+#import "PhoneVerificationFormViewController.h"
 
 @interface SignUpFormViewController ()
 
@@ -35,8 +36,8 @@
     SignUpForm *form = cell.field.form;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"username": form.username, @"password" : form.password, @"firstname" : form.firstName, @"lastname" : form.lastName, @"email" : form.email, @"phone" : form.phone, @"picture" : @""};
-    [manager POST:[NSString stringWithFormat:@"%s/%@", APIBaseURL, @"/user/new/"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSDictionary *parameters = @{@"username": form.username, @"password" : form.password, @"firstname" : form.firstName, @"lastname" : form.lastName, /* @"email" : form.email, */ @"phone" : form.phone, @"picture" : @""};
+    [manager POST:[NSString stringWithFormat:@"%s%@", APIBaseURL, @"/user/new/"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // always enters success because the API returns valid JSON and doesn't have appropriate HTTP status codes
         NSInteger status = [[((NSDictionary *)responseObject) objectForKey:@"status"] intValue];
         if (status == 200) {
@@ -48,9 +49,12 @@
                 [standardUserDefaults setObject:[NSString stringWithString:form.username] forKey:@"username"];
                 [standardUserDefaults synchronize];
             }
+            
+            PhoneVerificationFormViewController *controller = [[PhoneVerificationFormViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
         }
         else if (status == 409) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Username/email already taken." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Username already taken." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
         }
         // else if (status == 400) {
