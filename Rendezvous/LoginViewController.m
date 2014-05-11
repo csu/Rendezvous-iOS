@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import "FXForms/FXForms.h"
 #import "SignUpForm.h"
-#import "SignUpViewController.h"
+#import "SignUpFormViewController.h"
 
 @interface LoginViewController ()
 
@@ -96,9 +96,9 @@
     }
 }
 
-//- (IBAction)signUpAction:(id)sender {
-//    FXFormViewController *controller = [[FXFormViewController alloc] init];
-//    controller.formController.form = [[SignUpForm alloc] init];
-//}
+- (IBAction)signUpAction:(id)sender {
+    SignUpFormViewController *controller = [[SignUpFormViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+}
 
 @end

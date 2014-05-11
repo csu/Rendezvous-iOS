@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		478A2EECE41242568A0E2083 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB856D013134A4EAFFA922B /* libPods.a */; };
-		D5620665191EF9CF00966268 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5620664191EF9CF00966268 /* SignUpViewController.m */; };
+		D5620668191EFCE700966268 /* SignUpFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5620667191EFCE700966268 /* SignUpFormViewController.m */; };
 		D579DD7C191EB830001E98EF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D579DD7B191EB830001E98EF /* LoginViewController.m */; };
 		D595AAAC191EA1A100610061 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D595AAAB191EA1A100610061 /* Foundation.framework */; };
 		D595AAAE191EA1A100610061 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D595AAAD191EA1A100610061 /* CoreGraphics.framework */; };
@@ -42,8 +42,8 @@
 
 /* Begin PBXFileReference section */
 		CCB856D013134A4EAFFA922B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		D5620663191EF9CF00966268 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
-		D5620664191EF9CF00966268 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		D5620666191EFCE700966268 /* SignUpFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpFormViewController.h; sourceTree = "<group>"; };
+		D5620667191EFCE700966268 /* SignUpFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpFormViewController.m; sourceTree = "<group>"; };
 		D579DD7A191EB830001E98EF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		D579DD7B191EB830001E98EF /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		D595AAA8191EA1A100610061 /* Rendezvous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rendezvous.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,8 +139,8 @@
 				D595AABA191EA1A100610061 /* AppDelegate.h */,
 				D595AABB191EA1A100610061 /* AppDelegate.m */,
 				D595AABD191EA1A100610061 /* Main_iPhone.storyboard */,
-				D5620663191EF9CF00966268 /* SignUpViewController.h */,
-				D5620664191EF9CF00966268 /* SignUpViewController.m */,
+				D5620666191EFCE700966268 /* SignUpFormViewController.h */,
+				D5620667191EFCE700966268 /* SignUpFormViewController.m */,
 				D579DD7A191EB830001E98EF /* LoginViewController.h */,
 				D579DD7B191EB830001E98EF /* LoginViewController.m */,
 				D5F43425191EEB3B00D5CFCA /* SignUpForm.h */,
@@ -318,12 +318,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5620668191EFCE700966268 /* SignUpFormViewController.m in Sources */,
 				D595AABC191EA1A100610061 /* AppDelegate.m in Sources */,
 				D595AAC5191EA1A100610061 /* MasterViewController.m in Sources */,
 				D595AAB8191EA1A100610061 /* main.m in Sources */,
 				D5F43427191EEB3B00D5CFCA /* SignUpForm.m in Sources */,
 				D595AAC8191EA1A100610061 /* DetailViewController.m in Sources */,
-				D5620665191EF9CF00966268 /* SignUpViewController.m in Sources */,
 				D579DD7C191EB830001E98EF /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
