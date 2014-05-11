@@ -48,6 +48,7 @@
     // check to see if there's a user logged in via email
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     
+    // authenticate user with persistent login
     if ([standardUserDefaults objectForKey:@"username"] && [standardUserDefaults objectForKey:@"encryptedPassword"]) {
         NSString *username = nil;
         NSString *encryptedPassword = nil;

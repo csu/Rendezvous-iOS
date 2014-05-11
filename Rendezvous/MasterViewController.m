@@ -36,6 +36,13 @@
     // self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
+    // hide the nav controller back button
+    // [self.navigationItem setHidesBackButton:YES animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
     [self.navigationItem setHidesBackButton:YES animated:YES];
 }
 
