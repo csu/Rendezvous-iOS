@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
@@ -60,7 +61,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1239" y="-30"/>
+            <point key="canvasLocation" x="1467" y="-225"/>
         </scene>
         <!--Login View Controller - Rendezvous-->
         <scene sceneID="6Vx-g7-V6a">
@@ -124,12 +125,111 @@
                         <outlet property="loginButton" destination="HYS-lA-Brs" id="ixF-3N-Hwb"/>
                         <outlet property="loginView" destination="zaA-5m-a0S" id="pFS-qz-lWE"/>
                         <outlet property="signUpButton" destination="gxP-ld-qg3" id="ISh-cu-nXY"/>
-                        <segue destination="pGg-6v-bdr" kind="push" identifier="FriendsListSegue" id="Drj-zb-h5u"/>
+                        <segue destination="C0R-v7-jjr" kind="push" identifier="PickViewSegue" id="Cqf-NR-GZv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Md2-zP-FOU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="132" y="-30"/>
+        </scene>
+        <!--Free Picker View Controller - Rendezvous-->
+        <scene sceneID="qIs-we-CDR">
+            <objects>
+                <viewController id="C0R-v7-jjr" customClass="FreePickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EhL-R7-KH7"/>
+                        <viewControllerLayoutGuide type="bottom" id="kow-0Z-CoZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="W1d-JV-dvP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2i-zp-gBO">
+                                <rect key="frame" x="67" y="212" width="191" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Eat" image="pick-eat">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="eatPickButtonPress:" destination="C0R-v7-jjr" eventType="touchUpInside" id="w6T-jD-eNj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LX2-oG-816">
+                                <rect key="frame" x="67" y="259" width="191" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Hangout" image="pick-hangout">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="hangoutPickButtonPress:" destination="C0R-v7-jjr" eventType="touchUpInside" id="vmH-id-uMg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fl-Jp-8RP">
+                                <rect key="frame" x="67" y="353" width="191" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Other" image="pick-other">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="studyPickButtonPress:" destination="C0R-v7-jjr" eventType="touchUpInside" id="QJh-Pu-23z"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9A0-LU-sX6">
+                                <rect key="frame" x="67" y="306" width="191" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Movie" image="pick-movie">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="moviePickButtonPress:" destination="C0R-v7-jjr" eventType="touchUpInside" id="sV1-3o-8tm"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I'm free to…" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTP-IW-Hco">
+                                <rect key="frame" x="96" y="156" width="133" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TDB-N0-Jka">
+                                <rect key="frame" x="51" y="420" width="218" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="See what your friends are doing">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="browseButtonPress:" destination="C0R-v7-jjr" eventType="touchUpInside" id="csB-gA-3nR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Oi-xT-c0a">
+                                <rect key="frame" x="135" y="518" width="51" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Log Out">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutButtonpress:" destination="C0R-v7-jjr" eventType="touchUpInside" id="E22-5y-ugc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Rendezvous" id="1dH-4c-8sc"/>
+                    <connections>
+                        <outlet property="browseButton" destination="TDB-N0-Jka" id="mNe-vp-WNv"/>
+                        <outlet property="eatPickButton" destination="E2i-zp-gBO" id="w26-Al-nPc"/>
+                        <outlet property="hangoutPickButton" destination="LX2-oG-816" id="t3U-Hn-3Ev"/>
+                        <outlet property="logoutButton" destination="6Oi-xT-c0a" id="OHO-oI-vzb"/>
+                        <outlet property="moviePickButton" destination="9A0-LU-sX6" id="G7a-QO-1Nf"/>
+                        <outlet property="studyPickButton" destination="1fl-Jp-8RP" id="Cfy-5L-2Jy"/>
+                        <segue destination="pGg-6v-bdr" kind="push" identifier="ButtonsToListSegue" id="neW-qn-WaB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6IB-do-P8h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="798" y="-24"/>
         </scene>
         <!--Detail View Controller - Detail-->
         <scene sceneID="Cn3-H9-jdl">
@@ -165,11 +265,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1834" y="-30"/>
+            <point key="canvasLocation" x="2038" y="-225"/>
         </scene>
     </scenes>
     <resources>
         <image name="bg" width="640" height="1136"/>
+        <image name="pick-eat" width="360" height="80"/>
+        <image name="pick-hangout" width="360" height="80"/>
+        <image name="pick-movie" width="360" height="80"/>
+        <image name="pick-other" width="360" height="80"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

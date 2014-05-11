@@ -36,6 +36,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationController.navigationBarHidden = YES;
     self.loginView.readPermissions = @[@"public_profile", @"email"];
 }
 
@@ -48,6 +49,7 @@
             NSDictionary *json = ((NSDictionary *)responseObject);
             // NSLog(@"%@", json);
             if ([json objectForKey:@"status"]) { // user does not exist already
+                NSLog(@"%@", json);
                 [FBRequestConnection startWithGraphPath:@"/me/picture"
                                              parameters:nil
                                              HTTPMethod:@"GET"
@@ -73,8 +75,11 @@
             }
             else { // user already exists, go to friends list
                 // store the user information somewhere
-                MasterViewController *controller = [[MasterViewController alloc] init];
-                [self.navigationController pushViewController:controller animated:YES];
+                
+//                MasterViewController *controller = [[MasterViewController alloc] init];
+//                [self.navigationController pushViewController:controller animated:YES];
+                
+                [self performSegueWithIdentifier:@"PickViewSegue" sender:self];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);

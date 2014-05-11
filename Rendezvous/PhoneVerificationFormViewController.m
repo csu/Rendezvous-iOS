@@ -11,7 +11,8 @@
 #import "FXForms/FXForms.h"
 #import "AFNetworking/AFNetworking.h"
 #import "Globals.h"
-#import "MasterViewController.h"
+// #import "MasterViewController.h"
+#import "FreePickerViewController.h"
 
 @interface PhoneVerificationFormViewController ()
 
@@ -65,8 +66,13 @@
 //            [alert show];
             
             // store the user information somewhere
-            MasterViewController *controller = [[MasterViewController alloc] init];
+            
+//            MasterViewController *controller = [[MasterViewController alloc] init];
+//            [self.navigationController pushViewController:controller animated:YES];
+         
+            FreePickerViewController *controller = [[FreePickerViewController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
+            
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %ld", (long)operation.response.statusCode);
