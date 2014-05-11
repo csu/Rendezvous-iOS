@@ -20,6 +20,17 @@
         splitViewController.delegate = (id)navigationController.topViewController;
     }
     
+//    // Whenever a person opens the app, check for a cached session
+//    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+//        
+//        // If there's one, just open the session silently, without showing the user the login UI
+//        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile"]
+//                                           allowLoginUI:NO
+//                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+//                                          
+//                                      }];
+//    }
+    
     return YES;
 }
 

@@ -69,6 +69,8 @@
 }
 
 - (IBAction)logoutButtonPress:(id)sender {
+    // If the session state is any of the two "open" states when the button is clicked
+    
 }
 
 @end
