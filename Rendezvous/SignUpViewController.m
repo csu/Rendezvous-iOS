@@ -19,7 +19,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
+        // Custom initialization
     }
     return self;
 }
@@ -28,8 +28,20 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"reaching this point");
+    NSLog(@"reaching viewdidload");
+    self.formController = [[FXFormController alloc] init];
+    self.formController.tableView = self.tableView;
+    self.formController.delegate = self;
     self.formController.form = [[SignUpForm alloc] init];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"reaching viewwillappear");
+    [super viewWillAppear:animated];
+    
+    //reload the table
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning

@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "FXForms/FXForms.h"
 #import "SignUpForm.h"
+#import "SignUpViewController.h"
 
 @interface LoginViewController ()
 
@@ -89,7 +90,9 @@
 {
     if ([[segue identifier] isEqualToString:@"SignUpSegue"])
     {
-        
+        // Get reference to the destination view controller
+//        SignUpViewController *vc = [segue destinationViewController];
+//        vc.formController.form = [[SignUpForm alloc] init];
     }
 }
 

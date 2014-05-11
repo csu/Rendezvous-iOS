@@ -6,8 +6,12 @@
 //  Copyright (c) 2014 Christopher Su. All rights reserved.
 //
 
-#import "FXForms.h"
+#import <UIKit/UIKit.h>
+#import "FXForms/FXForms.h"
 
-@interface SignUpViewController : FXFormViewController
+@interface SignUpViewController : UIViewController <FXFormControllerDelegate>
+
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) FXFormController *formController;
 
 @end
