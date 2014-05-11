@@ -7,6 +7,7 @@
 //
 
 #import "SignUpViewController.h"
+#import "SignUpForm.h"
 
 @interface SignUpViewController ()
 
@@ -18,7 +19,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -27,6 +28,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSLog(@"reaching this point");
+    self.formController.form = [[SignUpForm alloc] init];
 }
 
 - (void)didReceiveMemoryWarning

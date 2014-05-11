@@ -11,4 +11,8 @@
 
 @interface LoginViewController : UIViewController <FBLoginViewDelegate>
 
+//@property (strong, nonatomic) IBOutlet UIButton *signUpButton;
+//
+//- (IBAction)signUpAction:(id)sender;
+
 @end

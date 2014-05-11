@@ -86,7 +86,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="8tD-PP-X2K" kind="push" id="90x-9B-FEo"/>
+                                    <segue destination="edV-Lg-qb7" kind="push" identifier="SignUpSegue" id="luN-se-Riq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYS-lA-Brs">
@@ -125,30 +125,24 @@
             </objects>
             <point key="canvasLocation" x="132" y="-30"/>
         </scene>
-        <!--View Controller - Sign Up-->
-        <scene sceneID="mBe-Cn-777">
+        <!--Sign Up View Controller-->
+        <scene sceneID="cGr-rs-3lE">
             <objects>
-                <viewController id="8tD-PP-X2K" sceneMemberID="viewController">
+                <viewController id="edV-Lg-qb7" customClass="SignUpViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kbp-IT-HSm"/>
-                        <viewControllerLayoutGuide type="bottom" id="j3p-Jb-OsG"/>
+                        <viewControllerLayoutGuide type="top" id="xIY-19-NLe"/>
+                        <viewControllerLayoutGuide type="bottom" id="KfK-oS-0Jc"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7EX-Ed-AeT">
+                    <view key="view" contentMode="scaleToFill" id="kgC-Sj-Ywa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="BlK-VS-6Y6">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Sign Up" id="v9o-sC-jiB"/>
+                    <navigationItem key="navigationItem" id="1Vr-BT-rjo"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uGV-Gv-Zn6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="slk-pe-KNf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="697" y="-532"/>
+            <point key="canvasLocation" x="600" y="-597"/>
         </scene>
         <!--View Controller - Log In-->
         <scene sceneID="SMc-Qa-gVn">

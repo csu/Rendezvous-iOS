@@ -7,6 +7,8 @@
 //
 
 #import "LoginViewController.h"
+#import "FXForms/FXForms.h"
+#import "SignUpForm.h"
 
 @interface LoginViewController ()
 
@@ -85,10 +87,15 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"FriendsListSegue"])
+    if ([[segue identifier] isEqualToString:@"SignUpSegue"])
     {
         
     }
 }
+
+//- (IBAction)signUpAction:(id)sender {
+//    FXFormViewController *controller = [[FXFormViewController alloc] init];
+//    controller.formController.form = [[SignUpForm alloc] init];
+//}
 
 @end
