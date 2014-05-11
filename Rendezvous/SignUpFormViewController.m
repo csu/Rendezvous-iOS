@@ -36,6 +36,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"username": form.username, @"password" : form.password, @"firstname" : form.firstName, @"lastname" : form.lastName, @"email" : form.email, @"phone" : form.phone, @"picture" : @""};
     [manager POST:@"http://140.142.143.133/user/new/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        // always enters success because the API returns valid JSON and doesn't have appropriate HTTP status codes
         NSLog(@"JSON: %@", responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %ld", (long)operation.response.statusCode);
