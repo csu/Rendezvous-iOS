@@ -108,11 +108,6 @@
                 [self.navigationController pushViewController:controller animated:YES];
             }
             else { // user already exists, go to friends list
-                // store the user information somewhere
-                
-//                MasterViewController *controller = [[MasterViewController alloc] init];
-//                [self.navigationController pushViewController:controller animated:YES];
-                
                 [self performSegueWithIdentifier:@"PickViewSegue" sender:self];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
