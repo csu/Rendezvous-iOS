@@ -10,6 +10,7 @@
 #import "PhoneVerificationForm.h"
 #import "FXForms/FXForms.h"
 #import "AFNetworking/AFNetworking.h"
+#import "Globals.h"
 
 @interface PhoneVerificationFormViewController ()
 
@@ -30,25 +31,33 @@
 
 - (void)submitPhoneVerificationForm:(UITableViewCell<FXFormFieldCell> *)cell
 {
-    //we can lookup the form from the cell if we want, like this:
+    // we can lookup the form from the cell if we want, like this:
     PhoneVerificationForm *form = cell.field.form;
     
+    // get username back
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *username = nil;
+    
+    if (standardUserDefaults)
+        username = [standardUserDefaults objectForKey:@"username"];
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"code": form.verificationCode, @"username": @"INSERT_USERNAME_HERE_SOMEHOW"};
-    [manager POST:@"http://140.142.143.133/user/new/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSDictionary *parameters = @{@"code": form.verificationCode, @"username": username};
+    [manager PUT:[NSString stringWithFormat:@"%s/%@", APIBaseURL, @"/user/new/"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // always enters success because the API returns valid JSON and doesn't have appropriate HTTP status codes
         NSInteger status = [[((NSDictionary *)responseObject) objectForKey:@"status"] intValue];
         if (status == 200) {
             // continue to text verification
             
         }
-        else if (status == 409) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Username/email already taken." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        else if (status == 401) {
+            // later should add something to limit the number of tries
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Incorrect confirmation code." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
         }
-        // else if (status == 400) {
+        // also later need to handle: 409 – restart registration; others – ???
         else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something is wrong." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something went wrong." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

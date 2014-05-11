@@ -40,8 +40,14 @@
         // always enters success because the API returns valid JSON and doesn't have appropriate HTTP status codes
         NSInteger status = [[((NSDictionary *)responseObject) objectForKey:@"status"] intValue];
         if (status == 200) {
-            // continue to text verification
+            // continue to text verification, pass username over
+            // not the best way to pass the username over, but it'll do for the MVP
+            NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
             
+            if (standardUserDefaults) {
+                [standardUserDefaults setObject:[NSString stringWithString:form.username] forKey:@"username"];
+                [standardUserDefaults synchronize];
+            }
         }
         else if (status == 409) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Username/email already taken." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
