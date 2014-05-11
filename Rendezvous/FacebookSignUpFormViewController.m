@@ -40,18 +40,26 @@
     NSString *firstName = nil;
     NSString *lastName = nil;
     NSString *facebookId = nil;
-    NSString *picture = nil;
+    // NSString *picture = nil;
     
     if (standardUserDefaults) {
         firstName = [standardUserDefaults objectForKey:@"firstName"];
         lastName = [standardUserDefaults objectForKey:@"lastName"];
         facebookId = [standardUserDefaults objectForKey:@"facebookId"];
-        picture = [standardUserDefaults objectForKey:@"picture"];
+        // picture = [standardUserDefaults objectForKey:@"picture"];
     }
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     // just use facebookId as password for MVP presentation demo
-    NSDictionary *parameters = @{@"username": form.username, @"password" : facebookId, @"firstname" : firstName, @"lastname" : lastName, @"phone" : form.phone, @"picture" : picture};
+    NSDictionary *parameters = @{ @"username": form.username,
+                                  @"password" : facebookId,
+                                  @"firstname" : firstName,
+                                  @"lastname" : lastName,
+                                  @"phone" : form.phone,
+                                  // @"picture" : picture,
+                                  @"picture" : @"",
+                                  @"facebook_id" : facebookId
+                                  };
     [manager POST:[NSString stringWithFormat:@"%s%@", APIBaseURL, @"/user/new/"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSInteger status = [[((NSDictionary *)responseObject) objectForKey:@"status"] intValue];
         if (status == 200) {

@@ -12,6 +12,7 @@
 #import "SignUpFormViewController.h"
 #import "Globals.h"
 #import "AFNetworking/AFNetworking.h"
+#import "FacebookSignUpFormViewController.h"
 
 @interface LoginViewController ()
 
@@ -38,12 +39,28 @@
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user {
     if(self.isFirstLoginDone) {
+        // NSLog(@"%@", user);
         NSString *userFacebookId = user.id;
-        NSLog(@"running through this area"); // WHY DOES IT GO THROUGH HERE TWICE?
-        NSDictionary *parameters = @{@"facebook_id": userFacebookId};
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager GET:[NSString stringWithFormat:@"%s%@", APIBaseURL, @"/user/exists/fb/"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"JSON: %@", responseObject);
+        [manager GET:[NSString stringWithFormat:@"%s%@%@", APIBaseURL, @"/user/exists/fb/", userFacebookId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSDictionary *json = ((NSDictionary *)responseObject);
+            // NSLog(@"%@", json);
+            if ([json objectForKey:@"status"]) { // user does not exist already
+                NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+                
+                if (standardUserDefaults) {
+                    [standardUserDefaults setObject:[NSString stringWithString:user.first_name] forKey:@"firstName"];
+                    [standardUserDefaults setObject:[NSString stringWithString:user.last_name] forKey:@"lastName"];
+                    [standardUserDefaults setObject:[NSString stringWithString:user.id] forKey:@"facebookId"];
+                    [standardUserDefaults synchronize];
+                }
+                
+                FacebookSignUpFormViewController *controller = [[FacebookSignUpFormViewController alloc] init];
+                [self.navigationController pushViewController:controller animated:YES];
+            }
+            else { // user already exists
+                
+            }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
         }];
