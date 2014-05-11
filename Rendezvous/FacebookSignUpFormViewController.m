@@ -40,13 +40,13 @@
     NSString *firstName = nil;
     NSString *lastName = nil;
     NSString *facebookId = nil;
-    // NSString *picture = nil;
+    NSString *picture = nil;
     
     if (standardUserDefaults) {
         firstName = [standardUserDefaults objectForKey:@"firstName"];
         lastName = [standardUserDefaults objectForKey:@"lastName"];
         facebookId = [standardUserDefaults objectForKey:@"facebookId"];
-        // picture = [standardUserDefaults objectForKey:@"picture"];
+        picture = [standardUserDefaults objectForKey:@"picture"];
     }
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -56,8 +56,7 @@
                                   @"firstname" : firstName,
                                   @"lastname" : lastName,
                                   @"phone" : form.phone,
-                                  // @"picture" : picture,
-                                  @"picture" : @"",
+                                  @"picture" : picture,
                                   @"facebook_id" : facebookId
                                   };
     [manager POST:[NSString stringWithFormat:@"%s%@", APIBaseURL, @"/user/new/"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {

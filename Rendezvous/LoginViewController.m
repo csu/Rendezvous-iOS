@@ -15,6 +15,7 @@
 #import "FacebookSignUpFormViewController.h"
 #import "MasterViewController.h"
 #import "LoginFormViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface LoginViewController ()
 
@@ -74,32 +75,21 @@
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user {
     if(self.isFirstLoginDone) {
-        // NSLog(@"%@", user);
         NSString *userFacebookId = user.id;
-        // NSLog(@"sending: %@", userFacebookId);
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager GET:[NSString stringWithFormat:@"%s%@%@", APIBaseURL, @"/user/exists/fb/", userFacebookId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSDictionary *json = ((NSDictionary *)responseObject);
-            // NSLog(@"%@", json);
-            if ([json objectForKey:@"status"]) { // user does not exist already
+            
+            // user does not exist already
+            if ([json objectForKey:@"status"]) {
                 NSLog(@"%@", json);
-//                [FBRequestConnection startWithGraphPath:@"/me/picture"
-//                                             parameters:nil
-//                                             HTTPMethod:@"GET"
-//                                      completionHandler:^(
-//                                                          FBRequestConnection *connection,
-//                                                          id result,
-//                                                          NSError *error
-//                                                          ) {
-//                                          NSLog(@"%@", result);
-//                                      }];
-                
                 NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
                 
                 if (standardUserDefaults) {
                     [standardUserDefaults setObject:[NSString stringWithString:user.first_name] forKey:@"firstName"];
                     [standardUserDefaults setObject:[NSString stringWithString:user.last_name] forKey:@"lastName"];
                     [standardUserDefaults setObject:[NSString stringWithString:user.id] forKey:@"facebookId"];
+                    [standardUserDefaults setObject:[NSString stringWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", user.id]] forKey:@"picture"];
                     [standardUserDefaults synchronize];
                 }
                 
@@ -107,9 +97,12 @@
                 self.navigationController.navigationBarHidden = NO;
                 [self.navigationController pushViewController:controller animated:YES];
             }
-            else { // user already exists, go to friends list
+            
+            // user already exists, go to friends list
+            else {
                 [self performSegueWithIdentifier:@"PickViewSegue" sender:self];
             }
+            
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
         }];
