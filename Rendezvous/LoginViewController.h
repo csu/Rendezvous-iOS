@@ -16,7 +16,9 @@
 // to configure permissions for facebook login:
 @property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 @property (strong, nonatomic) IBOutlet UIButton *signUpButton;
+@property (strong, nonatomic) IBOutlet UIButton *loginButton;
 
 - (IBAction)signUpAction:(id)sender;
+- (IBAction)loginAction:(id)sender;
 
 @end

@@ -13,6 +13,8 @@
 #import "Globals.h"
 #import "AFNetworking/AFNetworking.h"
 #import "FacebookSignUpFormViewController.h"
+#import "MasterViewController.h"
+#import "LoginFormViewController.h"
 
 @interface LoginViewController ()
 
@@ -46,6 +48,17 @@
             NSDictionary *json = ((NSDictionary *)responseObject);
             // NSLog(@"%@", json);
             if ([json objectForKey:@"status"]) { // user does not exist already
+                [FBRequestConnection startWithGraphPath:@"/me/picture"
+                                             parameters:nil
+                                             HTTPMethod:@"GET"
+                                      completionHandler:^(
+                                                          FBRequestConnection *connection,
+                                                          id result,
+                                                          NSError *error
+                                                          ) {
+                                          NSLog(@"%@", result);
+                                      }];
+                
                 NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
                 
                 if (standardUserDefaults) {
@@ -58,8 +71,10 @@
                 FacebookSignUpFormViewController *controller = [[FacebookSignUpFormViewController alloc] init];
                 [self.navigationController pushViewController:controller animated:YES];
             }
-            else { // user already exists
-                
+            else { // user already exists, go to friends list
+                // store the user information somewhere
+                MasterViewController *controller = [[MasterViewController alloc] init];
+                [self.navigationController pushViewController:controller animated:YES];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
@@ -126,6 +141,11 @@
 
 - (IBAction)signUpAction:(id)sender {
     SignUpFormViewController *controller = [[SignUpFormViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (IBAction)loginAction:(id)sender {
+    LoginFormViewController *controller = [[LoginFormViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

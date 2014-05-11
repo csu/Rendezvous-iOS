@@ -11,6 +11,7 @@
 #import "FXForms/FXForms.h"
 #import "AFNetworking/AFNetworking.h"
 #import "Globals.h"
+#import "MasterViewController.h"
 
 @interface PhoneVerificationFormViewController ()
 
@@ -60,8 +61,12 @@
             }
         }
         else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"It worked." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"It worked." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//            [alert show];
+            
+            // store the user information somewhere
+            MasterViewController *controller = [[MasterViewController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %ld", (long)operation.response.statusCode);

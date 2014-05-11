@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		478A2EECE41242568A0E2083 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB856D013134A4EAFFA922B /* libPods.a */; };
+		D506714E191F50060020616E /* LoginFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D506714D191F50060020616E /* LoginFormViewController.m */; };
+		D5067151191F50100020616E /* LoginForm.m in Sources */ = {isa = PBXBuildFile; fileRef = D5067150191F50100020616E /* LoginForm.m */; };
 		D5620668191EFCE700966268 /* SignUpFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5620667191EFCE700966268 /* SignUpFormViewController.m */; };
 		D562066E191F113D00966268 /* PhoneVerificationFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D562066D191F113D00966268 /* PhoneVerificationFormViewController.m */; };
 		D5620671191F117F00966268 /* PhoneVerificationForm.m in Sources */ = {isa = PBXBuildFile; fileRef = D5620670191F117F00966268 /* PhoneVerificationForm.m */; };
@@ -46,6 +48,10 @@
 
 /* Begin PBXFileReference section */
 		CCB856D013134A4EAFFA922B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D506714C191F50060020616E /* LoginFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginFormViewController.h; sourceTree = "<group>"; };
+		D506714D191F50060020616E /* LoginFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginFormViewController.m; sourceTree = "<group>"; };
+		D506714F191F50100020616E /* LoginForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginForm.h; sourceTree = "<group>"; };
+		D5067150191F50100020616E /* LoginForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginForm.m; sourceTree = "<group>"; };
 		D5620666191EFCE700966268 /* SignUpFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpFormViewController.h; sourceTree = "<group>"; };
 		D5620667191EFCE700966268 /* SignUpFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpFormViewController.m; sourceTree = "<group>"; };
 		D562066C191F113D00966268 /* PhoneVerificationFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneVerificationFormViewController.h; sourceTree = "<group>"; };
@@ -159,6 +165,10 @@
 				D5620667191EFCE700966268 /* SignUpFormViewController.m */,
 				D5F43425191EEB3B00D5CFCA /* SignUpForm.h */,
 				D5F43426191EEB3B00D5CFCA /* SignUpForm.m */,
+				D506714C191F50060020616E /* LoginFormViewController.h */,
+				D506714D191F50060020616E /* LoginFormViewController.m */,
+				D506714F191F50100020616E /* LoginForm.h */,
+				D5067150191F50100020616E /* LoginForm.m */,
 				D5620675191F2C5800966268 /* FacebookSignUpFormViewController.h */,
 				D5620676191F2C5800966268 /* FacebookSignUpFormViewController.m */,
 				D5620678191F2C7400966268 /* FacebookSignUpForm.h */,
@@ -340,7 +350,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D506714E191F50060020616E /* LoginFormViewController.m in Sources */,
 				D562066E191F113D00966268 /* PhoneVerificationFormViewController.m in Sources */,
+				D5067151191F50100020616E /* LoginForm.m in Sources */,
 				D5620668191EFCE700966268 /* SignUpFormViewController.m in Sources */,
 				D595AABC191EA1A100610061 /* AppDelegate.m in Sources */,
 				D595AAC5191EA1A100610061 /* MasterViewController.m in Sources */,
