@@ -13,9 +13,11 @@
 - (NSArray *)fields
 {
     return @[
-             
+             @"firstName",
+             @"lastName",
              @"username",
              @"password",
+             @"email",
              @"phone",
              
              @{FXFormFieldTitle: @"Submit", FXFormFieldHeader: @"", FXFormFieldAction: @"submitSignUpForm:"},

@@ -90,9 +90,7 @@
 {
     if ([[segue identifier] isEqualToString:@"SignUpSegue"])
     {
-        // Get reference to the destination view controller
-//        SignUpViewController *vc = [segue destinationViewController];
-//        vc.formController.form = [[SignUpForm alloc] init];
+        
     }
 }
 

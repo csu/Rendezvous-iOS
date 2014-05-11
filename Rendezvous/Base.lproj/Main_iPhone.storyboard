@@ -60,7 +60,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1219" y="-30"/>
+            <point key="canvasLocation" x="1239" y="-30"/>
         </scene>
         <!--Login View Controller - Rendezvous-->
         <scene sceneID="6Vx-g7-V6a">

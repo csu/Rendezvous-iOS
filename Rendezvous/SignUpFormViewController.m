@@ -9,6 +9,7 @@
 #import "SignUpFormViewController.h"
 #import "FXForms/FXForms.h"
 #import "SignUpForm.h"
+#import "AFNetworking/AFNetworking.h"
 
 @interface SignUpFormViewController ()
 
@@ -31,7 +32,16 @@
 {
     //we can lookup the form from the cell if we want, like this:
     SignUpForm *form = cell.field.form;
-    NSLog(@"%@ %@ %@", form.username, form.password, form.phone);
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *parameters = @{@"username": form.username, @"password" : form.password, @"firstname" : form.firstName, @"lastname" : form.lastName, @"email" : form.email, @"phone" : form.phone, @"picture" : @""};
+    [manager POST:@"http://140.142.143.133/user/new/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %ld", (long)operation.response.statusCode);
+    }];
+    
+    
 }
 
 - (void)viewDidLoad
