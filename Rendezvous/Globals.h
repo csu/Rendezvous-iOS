@@ -10,6 +10,6 @@
 
 @interface Globals : NSObject
 
-#define APIBaseURL "http://140.142.143.133"
+#define APIBaseURL "http://10.154.233.97"
 
 @end
