@@ -27,6 +27,13 @@
     return self;
 }
 
+- (void)submitSignUpForm:(UITableViewCell<FXFormFieldCell> *)cell
+{
+    //we can lookup the form from the cell if we want, like this:
+    SignUpForm *form = cell.field.form;
+    NSLog(@"%@ %@ %@", form.username, form.password, form.phone);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
