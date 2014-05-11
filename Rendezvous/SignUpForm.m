@@ -16,7 +16,7 @@
              
              @"username",
              @"password",
-             // @"phone",
+             @"phone",
              
              @{FXFormFieldTitle: @"Submit", FXFormFieldHeader: @"", FXFormFieldAction: @"submitRegistrationForm:"},
              

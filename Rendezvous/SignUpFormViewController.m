@@ -21,6 +21,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self setTitle:@"Sign Up"];
         self.formController.form = [[SignUpForm alloc] init];
     }
     return self;

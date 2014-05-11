@@ -13,6 +13,6 @@
 
 @property (nonatomic, copy) NSString *username;
 @property (nonatomic, copy) NSString *password;
-// @property (nonatomic, assign) NSInteger *phone;
+@property (nonatomic, copy) NSString *phone;
 
 @end
