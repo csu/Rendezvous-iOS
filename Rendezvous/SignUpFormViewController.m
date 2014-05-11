@@ -65,8 +65,6 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %ld", (long)operation.response.statusCode);
     }];
-    
-    
 }
 
 - (void)viewDidLoad

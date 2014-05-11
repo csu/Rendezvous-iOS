@@ -110,6 +110,9 @@
                                 <rect key="frame" x="20" y="435" width="280" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="T1Q-f2-73J" id="6Yy-uV-u0f"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -118,6 +121,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
+                        <outlet property="loginView" destination="zaA-5m-a0S" id="pFS-qz-lWE"/>
                         <outlet property="signUpButton" destination="gxP-ld-qg3" id="ISh-cu-nXY"/>
                         <segue destination="pGg-6v-bdr" kind="push" identifier="FriendsListSegue" id="Drj-zb-h5u"/>
                     </connections>

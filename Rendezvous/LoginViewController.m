@@ -10,6 +10,8 @@
 #import "FXForms/FXForms.h"
 #import "SignUpForm.h"
 #import "SignUpFormViewController.h"
+#import "Globals.h"
+#import "AFNetworking/AFNetworking.h"
 
 @interface LoginViewController ()
 
@@ -22,6 +24,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.isFirstLoginDone = NO;
     }
     return self;
 }
@@ -30,19 +33,29 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.loginView.readPermissions = @[@"public_profile", @"email"];
 }
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user {
-    NSLog(@"1");
+    if(self.isFirstLoginDone) {
+        NSString *userFacebookId = user.id;
+        NSLog(@"running through this area"); // WHY DOES IT GO THROUGH HERE TWICE?
+        NSDictionary *parameters = @{@"facebook_id": userFacebookId};
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager GET:[NSString stringWithFormat:@"%s%@", APIBaseURL, @"/user/exists/fb/"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", responseObject);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
+    }
+    self.isFirstLoginDone = NO;
 }
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-    NSLog(@"2");
-    [self performSegueWithIdentifier: @"FriendsListSegue" sender: self];
+    self.isFirstLoginDone = YES;
 }
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
-    NSLog(@"3");
     
 }
 

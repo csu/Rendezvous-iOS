@@ -11,6 +11,10 @@
 
 @interface LoginViewController : UIViewController <FBLoginViewDelegate>
 
+@property (nonatomic) BOOL isFirstLoginDone;
+
+// to configure permissions for facebook login:
+@property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 @property (strong, nonatomic) IBOutlet UIButton *signUpButton;
 
 - (IBAction)signUpAction:(id)sender;
