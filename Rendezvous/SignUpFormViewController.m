@@ -37,7 +37,19 @@
     NSDictionary *parameters = @{@"username": form.username, @"password" : form.password, @"firstname" : form.firstName, @"lastname" : form.lastName, @"email" : form.email, @"phone" : form.phone, @"picture" : @""};
     [manager POST:@"http://140.142.143.133/user/new/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // always enters success because the API returns valid JSON and doesn't have appropriate HTTP status codes
-        NSLog(@"JSON: %@", responseObject);
+        NSInteger status = [[((NSDictionary *)responseObject) objectForKey:@"status"] intValue];
+        if (status == 200) {
+            // continue to text verification
+            
+        }
+        else if (status == 409) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Username/email already taken." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        else if (status == 400) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something is wrong." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %ld", (long)operation.response.statusCode);
     }];
