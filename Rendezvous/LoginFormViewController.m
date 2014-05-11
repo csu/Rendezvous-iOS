@@ -10,7 +10,7 @@
 #import "LoginForm.h"
 #import "AFNetworking/AFNetworking.h"
 #import "Globals.h"
-#import "MasterViewController.h"
+#import "FreePickerViewController.h"
 
 @interface LoginFormViewController ()
 
@@ -24,6 +24,8 @@
     if (self) {
         [self setTitle:@"Login"];
         self.formController.form = [[LoginForm alloc] init];
+        
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pick-bg.png"]];
     }
     return self;
 }
@@ -44,8 +46,17 @@
             // login failed, show error messages according to the three different error statuses
         }
         else { // got a user object
-            // store the user information somewhere
-            MasterViewController *controller = [[MasterViewController alloc] init];
+            // save the received username and encrypted password for persistent login
+            NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+            
+            if (standardUserDefaults) {
+                [standardUserDefaults setObject:[json objectForKey:@"username"] forKey:@"username"];
+                [standardUserDefaults setObject:[json objectForKey:@"password"] forKey:@"encryptedPassword"];
+                [standardUserDefaults synchronize];
+            }
+            
+            FreePickerViewController *controller = [[FreePickerViewController alloc] init];
+            self.navigationController.navigationBarHidden = NO;
             [self.navigationController pushViewController:controller animated:YES];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

@@ -26,6 +26,8 @@
         // Custom initialization
         [self setTitle:@"Sign Up"];
         self.formController.form = [[SignUpForm alloc] init];
+        
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pick-bg.png"]];
     }
     return self;
 }
@@ -36,7 +38,13 @@
     SignUpForm *form = cell.field.form;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"username": form.username, @"password" : form.password, @"firstname" : form.firstName, @"lastname" : form.lastName, /* @"email" : form.email, */ @"phone" : form.phone, @"picture" : @""};
+    NSDictionary *parameters = @{ @"username": form.username,
+                                  @"password" : form.password,
+                                  @"firstname" : form.firstName,
+                                  @"lastname" : form.lastName,
+                                  @"phone" : form.phone,
+                                  @"picture" : @""
+                                  };
     [manager POST:[NSString stringWithFormat:@"%s%@", APIBaseURL, @"/user/new/"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // always enters success because the API returns valid JSON and doesn't have appropriate HTTP status codes
         NSInteger status = [[((NSDictionary *)responseObject) objectForKey:@"status"] intValue];

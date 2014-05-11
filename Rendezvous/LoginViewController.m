@@ -36,8 +36,40 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // view customization
     self.navigationController.navigationBarHidden = YES;
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"login-bg.png"]];
+    
+    // facebook auth config
     self.loginView.readPermissions = @[@"public_profile", @"email"];
+    
+    // check to see if there's a user logged in via email
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([standardUserDefaults objectForKey:@"username"] && [standardUserDefaults objectForKey:@"encryptedPassword"]) {
+        NSString *username = nil;
+        NSString *encryptedPassword = nil;
+        
+        username = [standardUserDefaults objectForKey:@"username"];
+        encryptedPassword = [standardUserDefaults objectForKey:@"encryptedPassword"];
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        NSDictionary *parameters = @{ @"username": username,
+                                      @"encrypted_password" : encryptedPassword
+                                      };
+        [manager POST:[NSString stringWithFormat:@"%s%@", APIBaseURL, @"/user/login/encrypted/"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSDictionary *json = ((NSDictionary *)responseObject);
+            if ([json objectForKey:@"status"]) { // something went wrong
+                NSLog(@"persistent login with email failed, going to fall back to auth options screen");
+            }
+            else { // got a user
+                [self performSegueWithIdentifier:@"PickViewSegue" sender:self];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %ld", (long)operation.response.statusCode);
+        }];
+    }
 }
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView user:(id<FBGraphUser>)user {
@@ -146,11 +178,13 @@
 
 - (IBAction)signUpAction:(id)sender {
     SignUpFormViewController *controller = [[SignUpFormViewController alloc] init];
+    self.navigationController.navigationBarHidden = NO;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (IBAction)loginAction:(id)sender {
     LoginFormViewController *controller = [[LoginFormViewController alloc] init];
+    self.navigationController.navigationBarHidden = NO;
     [self.navigationController pushViewController:controller animated:YES];
 }
 

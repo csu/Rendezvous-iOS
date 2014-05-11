@@ -48,7 +48,7 @@
     [manager PUT:[NSString stringWithFormat:@"%s%@", APIBaseURL, @"/user/new/"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // always enters success because the API returns valid JSON and doesn't have appropriate HTTP status codes
         NSDictionary *user = ((NSDictionary *)responseObject);
-        NSLog(@"%@", user);
+        // NSLog(@"%@", user);
         if ([user objectForKey:@"status"]) {
             if ([[user objectForKey:@"status"] integerValue] == 401) {
                 // later should add something to limit the number of tries
@@ -61,16 +61,18 @@
                 [alert show];
             }
         }
-        else {
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"It worked." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//            [alert show];
+        else { // user finished registration
+            // store returned user information for persistent login
+            NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+            if (standardUserDefaults) {
+                [standardUserDefaults setObject:[user objectForKey:@"username"] forKey:@"username"];
+                [standardUserDefaults setObject:[user objectForKey:@"password"] forKey:@"encryptedPassword"];
+                [standardUserDefaults synchronize];
+            }
             
-            // store the user information somewhere
-            
-//            MasterViewController *controller = [[MasterViewController alloc] init];
-//            [self.navigationController pushViewController:controller animated:YES];
-         
+            // move to free picker
             FreePickerViewController *controller = [[FreePickerViewController alloc] init];
+            self.navigationController.navigationBarHidden = YES;
             [self.navigationController pushViewController:controller animated:YES];
             
         }

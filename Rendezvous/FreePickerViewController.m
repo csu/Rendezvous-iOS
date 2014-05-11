@@ -7,6 +7,8 @@
 //
 
 #import "FreePickerViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import "LoginViewController.h"
 
 @interface FreePickerViewController ()
 
@@ -69,7 +71,15 @@
 }
 
 - (IBAction)logoutButtonPress:(id)sender {
-    // If the session state is any of the two "open" states when the button is clicked
+    // clear stored user defaults
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+    
+    // clear facebook login
+    [FBSession.activeSession closeAndClearTokenInformation];
+    
+    // go back to home screen
+    [self.navigationController popToRootViewControllerAnimated:TRUE];
     
 }
 
