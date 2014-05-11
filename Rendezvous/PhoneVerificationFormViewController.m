@@ -1,42 +1,41 @@
 //
-//  SignUpFormViewController.m
+//  PhoneVerificationFormViewController.m
 //  Rendezvous
 //
 //  Created by Christopher Su on 5/10/14.
 //  Copyright (c) 2014 Christopher Su. All rights reserved.
 //
 
-#import "SignUpFormViewController.h"
+#import "PhoneVerificationFormViewController.h"
+#import "PhoneVerificationForm.h"
 #import "FXForms/FXForms.h"
-#import "SignUpForm.h"
 #import "AFNetworking/AFNetworking.h"
-#import "Globals.h"
 
-@interface SignUpFormViewController ()
+@interface PhoneVerificationFormViewController ()
 
 @end
 
-@implementation SignUpFormViewController
+@implementation PhoneVerificationFormViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
         [self setTitle:@"Sign Up"];
-        self.formController.form = [[SignUpForm alloc] init];
+        self.formController.form = [[PhoneVerificationForm alloc] init];
     }
     return self;
 }
 
-- (void)submitSignUpForm:(UITableViewCell<FXFormFieldCell> *)cell
+
+- (void)submitPhoneVerificationForm:(UITableViewCell<FXFormFieldCell> *)cell
 {
     //we can lookup the form from the cell if we want, like this:
-    SignUpForm *form = cell.field.form;
+    PhoneVerificationForm *form = cell.field.form;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"username": form.username, @"password" : form.password, @"firstname" : form.firstName, @"lastname" : form.lastName, @"email" : form.email, @"phone" : form.phone, @"picture" : @""};
-    [manager POST:[NSString stringWithFormat:@"%s/%@", APIBaseURL, @"/user/new/"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSDictionary *parameters = @{@"code": form.verificationCode, @"username": @"INSERT_USERNAME_HERE_SOMEHOW"};
+    [manager POST:@"http://140.142.143.133/user/new/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // always enters success because the API returns valid JSON and doesn't have appropriate HTTP status codes
         NSInteger status = [[((NSDictionary *)responseObject) objectForKey:@"status"] intValue];
         if (status == 200) {
