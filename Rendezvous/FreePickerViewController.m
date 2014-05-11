@@ -12,6 +12,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "AFNetworking/AFNetworking.h"
 #import "Globals.h"
+#import <APAvatarImageView/APAvatarImageView.h>
 
 @interface FreePickerViewController () {
     CLLocationManager *locationManager;
@@ -33,10 +34,45 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    // self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pick-bg.png"]];
-    self.navigationController.navigationBarHidden = YES;
     
+    // view customization
+    self.navigationController.navigationBarHidden = YES; // this is also set in LoginViewController before the segue, but here again just in case
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pick-bg.png"]];
+    
+    // get profile picture url (either from api or persistent storage)
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *username = nil;
+    if (standardUserDefaults) {
+        username = [standardUserDefaults objectForKey:@"username"];
+    }
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:[NSString stringWithFormat:@"%s%@%@", APIBaseURL, @"/user/picture/", username] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *json = ((NSDictionary *)responseObject);
+        NSString *pictureUrl = nil;
+        if ([json objectForKey:@"picture"])
+            pictureUrl = [NSString stringWithFormat:@"%@", [json objectForKey:@"picture"]];
+        // NSLog(@"%@", pictureUrl);
+        if ([pictureUrl length] != 0) { // got a profile picture (maybe need to check if string isn't empty)
+            // display profile picture
+            UIImage *profImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:pictureUrl]]];
+            self.profilePicture.contentMode  = UIViewContentModeScaleAspectFit;
+            [self.profilePicture setImage:profImage];
+        }
+        else { // failed to get a profile picture
+            // don't show it
+            // self.profilePicture.hidden = YES;
+            
+            // or show a placeholder
+            UIImage *profImage = [UIImage imageNamed:@"default-profile-picture.png"];
+            self.profilePicture.contentMode  = UIViewContentModeScaleAspectFit;
+            [self.profilePicture setImage:profImage];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %ld", (long)operation.response.statusCode);
+    }];
+    
+    // set up getting location
     locationManager = [[CLLocationManager alloc] init];
     locationManager.distanceFilter = kCLDistanceFilterNone;
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
@@ -102,19 +138,22 @@
 
 - (IBAction)eatPickButtonPress:(id)sender {
     [self postStatus:@"Eat"];
-    
+    [self segueToFriendsList];
 }
 
 - (IBAction)hangoutPickButtonPress:(id)sender {
-    
+    [self postStatus:@"Hangout"];
+    [self segueToFriendsList];
 }
 
 - (IBAction)moviePickButtonPress:(id)sender {
-    
+    [self postStatus:@"Movie"];
+    [self segueToFriendsList];
 }
 
 - (IBAction)studyPickButtonPress:(id)sender {
-    
+    [self postStatus:@"Study"];
+    [self segueToFriendsList];
 }
 
 - (IBAction)logoutButtonPress:(id)sender {

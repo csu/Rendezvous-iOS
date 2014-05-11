@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <APAvatarImageView/APAvatarImageView.h>
 
 @interface FreePickerViewController : UIViewController
 
@@ -16,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *moviePickButton;
 @property (strong, nonatomic) IBOutlet UIButton *studyPickButton;
 @property (strong, nonatomic) IBOutlet UIButton *logoutButton;
+@property (strong, nonatomic) IBOutlet APAvatarImageView *profilePicture;
 
 - (IBAction)browseButtonPress:(id)sender;
 - (IBAction)eatPickButtonPress:(id)sender;

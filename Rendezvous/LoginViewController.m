@@ -66,11 +66,60 @@
                 NSLog(@"persistent login with email failed, going to fall back to auth options screen");
             }
             else { // got a user
+                self.navigationController.navigationBarHidden = YES;
                 [self performSegueWithIdentifier:@"PickViewSegue" sender:self];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %ld", (long)operation.response.statusCode);
         }];
+    }
+    
+    // if we're actually going to display the page:
+    // customize fbloginview
+//    FBLoginView *loginview = self.fbLoginView;
+//    for (id obj in loginview.subviews)
+//    {
+//        if ([obj isKindOfClass:[UIButton class]])
+//        {
+//            UIButton * loginButton =  obj;
+//            UIImage *loginImage = [UIImage imageNamed:@"fb-auth-button-new.png"];
+//            [loginButton setContentMode:UIViewContentModeCenter];
+//            [loginButton setBackgroundImage:loginImage forState:UIControlStateNormal];
+//            [loginButton setBackgroundImage:nil forState:UIControlStateSelected];
+//            [loginButton setBackgroundImage:nil forState:UIControlStateHighlighted];
+//            // [loginButton sizeToFit];
+//        }
+//        if ([obj isKindOfClass:[UILabel class]])
+//        {
+//            UILabel * loginLabel =  obj;
+//            loginLabel.text = @"";
+//            // loginLabel.textAlignment = UITextAlignmentCenter;
+//            // loginLabel.frame = CGRectMake(0, 0, 271, 37);
+//        }
+//    }
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    FBLoginView *loginview = self.fbLoginView;
+    for (id obj in loginview.subviews)
+    {
+        if ([obj isKindOfClass:[UIButton class]])
+        {
+            UIButton * loginButton =  obj;
+            UIImage *loginImage = [UIImage imageNamed:@"fb-auth-button-new.png"];
+            [loginButton setContentMode:UIViewContentModeCenter];
+            [loginButton setBackgroundImage:loginImage forState:UIControlStateNormal];
+            [loginButton setBackgroundImage:nil forState:UIControlStateSelected];
+            [loginButton setBackgroundImage:nil forState:UIControlStateHighlighted];
+            // [loginButton sizeToFit];
+        }
+        if ([obj isKindOfClass:[UILabel class]])
+        {
+            UILabel * loginLabel =  obj;
+            loginLabel.text = @"";
+            // loginLabel.textAlignment = UITextAlignmentCenter;
+            // loginLabel.frame = CGRectMake(0, 0, 271, 37);
+        }
     }
 }
 
@@ -101,6 +150,14 @@
             
             // user already exists, go to friends list
             else {
+                // overwrite the current username in defaults just in case, because new status requires it
+                NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+                if (standardUserDefaults) {
+                    [standardUserDefaults setObject:[json valueForKey:@"username"] forKey:@"username"];
+                    [standardUserDefaults synchronize];
+                }
+                
+                self.navigationController.navigationBarHidden = YES;
                 [self performSegueWithIdentifier:@"PickViewSegue" sender:self];
             }
             
