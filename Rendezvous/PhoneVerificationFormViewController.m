@@ -71,8 +71,13 @@
             }
             
             // move to free picker
-            FreePickerViewController *controller = [[FreePickerViewController alloc] init];
-            self.navigationController.navigationBarHidden = YES;
+//            FreePickerViewController *controller = [[FreePickerViewController alloc] init];
+//            self.navigationController.navigationBarHidden = YES;
+//            [self.navigationController pushViewController:controller animated:YES];
+            
+            // working!
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+            FreePickerViewController *controller = (FreePickerViewController *)[storyboard instantiateViewControllerWithIdentifier:@"FreePicker"];
             [self.navigationController pushViewController:controller animated:YES];
             
         }

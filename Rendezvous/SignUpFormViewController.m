@@ -65,13 +65,13 @@
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Username already taken." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
         }
-        // else if (status == 400) {
         else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something is wrong." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %ld", (long)operation.response.statusCode);
+        NSLog(@"Error: %@", error);
+        NSLog(@"Status code: %ld", (long)operation.response.statusCode);
     }];
 }
 

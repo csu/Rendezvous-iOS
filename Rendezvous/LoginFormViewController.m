@@ -55,8 +55,8 @@
                 [standardUserDefaults synchronize];
             }
             
-            FreePickerViewController *controller = [[FreePickerViewController alloc] init];
-            self.navigationController.navigationBarHidden = NO;
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+            FreePickerViewController *controller = (FreePickerViewController *)[storyboard instantiateViewControllerWithIdentifier:@"FreePicker"];
             [self.navigationController pushViewController:controller animated:YES];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

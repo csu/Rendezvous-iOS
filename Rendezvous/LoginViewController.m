@@ -76,22 +76,23 @@
     if(self.isFirstLoginDone) {
         // NSLog(@"%@", user);
         NSString *userFacebookId = user.id;
+        // NSLog(@"sending: %@", userFacebookId);
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager GET:[NSString stringWithFormat:@"%s%@%@", APIBaseURL, @"/user/exists/fb/", userFacebookId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSDictionary *json = ((NSDictionary *)responseObject);
             // NSLog(@"%@", json);
             if ([json objectForKey:@"status"]) { // user does not exist already
                 NSLog(@"%@", json);
-                [FBRequestConnection startWithGraphPath:@"/me/picture"
-                                             parameters:nil
-                                             HTTPMethod:@"GET"
-                                      completionHandler:^(
-                                                          FBRequestConnection *connection,
-                                                          id result,
-                                                          NSError *error
-                                                          ) {
-                                          NSLog(@"%@", result);
-                                      }];
+//                [FBRequestConnection startWithGraphPath:@"/me/picture"
+//                                             parameters:nil
+//                                             HTTPMethod:@"GET"
+//                                      completionHandler:^(
+//                                                          FBRequestConnection *connection,
+//                                                          id result,
+//                                                          NSError *error
+//                                                          ) {
+//                                          NSLog(@"%@", result);
+//                                      }];
                 
                 NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
                 
@@ -103,6 +104,7 @@
                 }
                 
                 FacebookSignUpFormViewController *controller = [[FacebookSignUpFormViewController alloc] init];
+                self.navigationController.navigationBarHidden = NO;
                 [self.navigationController pushViewController:controller animated:YES];
             }
             else { // user already exists, go to friends list
