@@ -181,6 +181,12 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    // Google Analytics
+    [super viewWillAppear:animated];
+    self.screenName = @"Login View";
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "GAITrackedViewController.h"
 
-@interface LoginViewController : UIViewController <FBLoginViewDelegate>
+@interface LoginViewController : GAITrackedViewController <FBLoginViewDelegate>
 
 @property (nonatomic) BOOL isFirstLoginDone;
 

@@ -90,7 +90,7 @@
     NSArray *objects = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude], [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude], nil];
     NSDictionary *coordinates = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
-    NSLog(@"%@", coordinates);
+    // NSLog(@"%@", coordinates);
     return coordinates;
 }
 

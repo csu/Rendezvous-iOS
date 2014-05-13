@@ -9,6 +9,7 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import "AFNetworking/AFNetworking.h"
+#import "Globals.h"
 
 @interface MasterViewController () {
     NSMutableArray *_objects;
@@ -37,7 +38,29 @@
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
     // hide the nav controller back button
-    [self.navigationItem setHidesBackButton:YES animated:YES];
+    //[self.navigationItem setHidesBackButton:YES animated:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *username = nil;
+    if (standardUserDefaults) {
+        username = [standardUserDefaults objectForKey:@"username"];
+    }
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *parameters = @{ @"username": username};
+    [manager POST:[NSString stringWithFormat:@"%s%@", APIBaseURL, @"/status/friends/"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *json = ((NSDictionary *)responseObject);
+        NSLog(@"%@", json);
+//        if () {
+//            
+//        }
+//        else {
+//            
+//        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %ld", (long)operation.response.statusCode);
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
