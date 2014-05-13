@@ -20,15 +20,18 @@ PODS:
     - AFNetworking/NSURLSession
   - APAvatarImageView (1.1.0)
   - FXForms (1.1.6)
+  - GoogleAnalytics-iOS-SDK (3.0.7)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - APAvatarImageView
   - FXForms (~> 1.1)
+  - GoogleAnalytics-iOS-SDK (~> 3.0)
 
 SPEC CHECKSUMS:
   AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
   APAvatarImageView: 954065daf4949a2cc816e3d79ef6c8b0f3d6dda4
   FXForms: d1c3fccab32a6702430b14808f7b46061008a4a9
+  GoogleAnalytics-iOS-SDK: 594702aaf93e6ee497140fd31e758c2e2fa44315
 
 COCOAPODS: 0.32.1
