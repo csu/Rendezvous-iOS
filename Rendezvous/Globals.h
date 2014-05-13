@@ -10,6 +10,6 @@
 
 @interface Globals : NSObject
 
-#define APIBaseURL "http://69.91.217.124"
+#define APIBaseURL "http://api.rendezvous.com"
 
 @end
