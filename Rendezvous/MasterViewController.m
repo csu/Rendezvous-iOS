@@ -11,6 +11,11 @@
 #import "AFNetworking/AFNetworking.h"
 #import "Globals.h"
 
+// Google Analytics
+#import <GAI.h>
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
+
 @interface MasterViewController () {
     NSMutableArray *_objects;
 }
@@ -42,6 +47,13 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    // Google Analytics
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Friends List"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+
+    // Acquire friends list and put it up. SHOULD PROBABLY DO THIS IN VIEW _WILL_ APPEAR INSTEAD OF _DID_ APPEAR
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     NSString *username = nil;
     if (standardUserDefaults) {

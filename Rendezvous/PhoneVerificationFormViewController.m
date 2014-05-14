@@ -14,6 +14,11 @@
 // #import "MasterViewController.h"
 #import "FreePickerViewController.h"
 
+// Google Analytics
+#import <GAI.h>
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
+
 @interface PhoneVerificationFormViewController ()
 
 @end
@@ -86,6 +91,17 @@
     }];
     
     
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    // Google Analytics
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Phone Verification Form"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 - (void)viewDidLoad

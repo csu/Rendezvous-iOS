@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <APAvatarImageView/APAvatarImageView.h>
+#import "GAITrackedViewController.h"
 
-@interface FreePickerViewController : UIViewController
+@interface FreePickerViewController : GAITrackedViewController
 
 @property (strong, nonatomic) IBOutlet UIButton *browseButton;
 @property (strong, nonatomic) IBOutlet UIButton *eatPickButton;

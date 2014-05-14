@@ -13,6 +13,11 @@
 #import "Globals.h"
 #import "PhoneVerificationFormViewController.h"
 
+// Google Analytics
+#import <GAI.h>
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
+
 @interface SignUpFormViewController ()
 
 @end
@@ -73,6 +78,17 @@
         NSLog(@"Error: %@", error);
         NSLog(@"Status code: %ld", (long)operation.response.statusCode);
     }];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    // Google Analytics
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Sign Up Form"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 - (void)viewDidLoad

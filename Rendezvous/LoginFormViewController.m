@@ -12,6 +12,11 @@
 #import "Globals.h"
 #import "FreePickerViewController.h"
 
+// Google Analytics
+#import <GAI.h>
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
+
 @interface LoginFormViewController ()
 
 @end
@@ -62,6 +67,17 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %ld", (long)operation.response.statusCode);
     }];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    // Google Analytics
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Login Form"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 

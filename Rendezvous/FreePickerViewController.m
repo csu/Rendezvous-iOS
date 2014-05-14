@@ -132,6 +132,12 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    // Google Analytics
+    [super viewWillAppear:animated];
+    self.screenName = @"Free Picker";
+}
+
 - (IBAction)browseButtonPress:(id)sender {
     [self segueToFriendsList];
 }
