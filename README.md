@@ -1,7 +1,7 @@
 Rendezvous-iOS
 ==============
 
-The iOS app for [Rendezvous](http://getrendezvous.com/).
+The iOS app for [Rendezvous](http://getrendezvous.com/). Built in less than 3 days for Startup Weekend UW.
 
 ## Screenshots
 Below are screenshots from the iOS application.
