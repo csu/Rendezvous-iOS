@@ -1,0 +1,3 @@
+[submodule "Rendezvous-OpenSource-iOS"]
+	path = Rendezvous-OpenSource-iOS
+	url = https://github.com/getrendezvous/Rendezvous-OpenSource-iOS.git
